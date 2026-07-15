@@ -1,10 +1,9 @@
 <h1>Apply for {{ item | upper }} Insurance</h1>
-<p><strong>Category:</strong> {{ data.catalog_item }}</p>
-<p><strong>Name:</strong> {{ data.name }}</p>
-<p><strong>Address:</strong> {{ data.address }}</p>
-<p><strong>Item Age:</strong> {{ data.item_age }}</p>
-<p><strong>Duration:</strong> {{ data.years_of_insurance }} Years</p>
-<h2>Total Fixed Price: INR {{ data.total_price }}</h2>
-<form action="/final-confirm/{{ app_id }}" method="POST">
-    <button type="submit">Confirm & Buy</button>
+<form action="/submit-form" method="POST">
+    <input type="hidden" name="catalog_item" value="{{ item }}">
+    Name: <input type="text" name="name" required><br><br>
+    Address: <input type="text" name="address" required><br><br>
+    Age of {{ item }}: <input type="number" name="item_age" required><br><br>
+    Years of Insurance: <input type="number" name="years_of_insurance" required><br><br>
+    <button type="submit">Review Application</button>
 </form>
