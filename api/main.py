@@ -23,6 +23,7 @@ class ApplicationData(BaseModel):
     address: str
     item_age: int
     years_of_insurance: int
+    total_price: float
 
 @app.post("/api/apply")
 def create_application(data: ApplicationData):
@@ -30,10 +31,10 @@ def create_application(data: ApplicationData):
         raise HTTPException(status_code=400, detail="Invalid catalog item")
     
     app_id = str(uuid.uuid4())
-    total_price = PRICING[data.catalog_item]
+    price = PRICING[data.catalog_item]
     
     payload = data.model_dump()
-    payload["total_price"] = total_price
+    payload["total_price"] = float(price * data.years_of_insurance)
     payload["status"] = "Pending"
     
     # Store in Redis for 1 hour (3600 seconds)
