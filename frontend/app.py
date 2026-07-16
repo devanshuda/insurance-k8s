@@ -21,8 +21,7 @@ def submit_form():
         "name": request.form['name'],
         "address": request.form['address'],
         "item_age": int(request.form['item_age']),
-        "years_of_insurance": int(request.form['years_of_insurance']),
-        "total_price": float(request.form['total_price'])
+        "years_of_insurance": int(request.form['years_of_insurance'])
     }
     response = requests.post(f"{API_URL}/api/apply", json=payload)
     if response.status_code == 200:
